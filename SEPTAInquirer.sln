@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPTAInquirer", "WebApplication1\SEPTAInquirer.csproj", "{329FE021-7B41-495A-BF60-54081B17CFB2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPTAInquirer", "septa-status-inquirer\SEPTAInquirer.csproj", "{329FE021-7B41-495A-BF60-54081B17CFB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

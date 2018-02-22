@@ -10,9 +10,9 @@ namespace SEPTAInquirer.Controllers
     [Route("api/SPETA")]
     public class SeptaController : Controller
     {
-        private ISEPTAPIClient _septaApiClient;
+        private ISeptapiClient _septaApiClient;
 
-        public SeptaController(ISEPTAPIClient septaApiclient)
+        public SeptaController(ISeptapiClient septaApiclient)
         {
             _septaApiClient = septaApiclient;
         }
