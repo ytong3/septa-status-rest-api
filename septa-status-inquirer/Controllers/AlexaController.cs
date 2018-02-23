@@ -41,12 +41,12 @@ namespace SEPTAInquirer.Controllers
             if (requestType == typeof(IntentRequest))
             {
                 var response = HandleIntents(skillRequest);
-                return Ok(requestType);
+                return Ok(response);
             }
             else if (requestType == typeof(LaunchRequest))
             {
                 var speech = new SsmlOutputSpeech();
-                speech.Ssml = "<speak>Launch repsonse</speak>";
+                speech.Ssml = "<speak>Ask me a question</speak>";
                 var finalResponse = ResponseBuilder.Tell(speech);
                 return Ok(finalResponse);
             }
@@ -82,7 +82,7 @@ namespace SEPTAInquirer.Controllers
             {
                 var speechToSay  = HandleAmILateIntent();
 
-                speech.Ssml = "<speak>MyIntent response";
+                speech.Ssml = "<speak>"+speechToSay;
                 return ResponseBuilder.Tell(speech);
             }
 
