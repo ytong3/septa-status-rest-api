@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Alexa.NET.Security.Middleware;
 using SEPTAInquierierForAlexa;
 
 namespace SEPTAInquirer
@@ -26,6 +27,8 @@ namespace SEPTAInquirer
         {
             services.AddMvc();
             services.AddSingleton<ISeptapiClient, SEPTAAPIClient>();
+
+            //TODO: need an AutoMapper to map a SEPTANextToArriveAPIResult to TrainInfo?
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,6 +39,7 @@ namespace SEPTAInquirer
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseAlexaRequestValidation();
             app.UseMvc();
         }
     }
