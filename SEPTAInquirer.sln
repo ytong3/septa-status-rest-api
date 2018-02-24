@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEPTAInquirer", "septa-status-inquirer\SEPTAInquirer.csproj", "{329FE021-7B41-495A-BF60-54081B17CFB2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPTAInquirer.Test", "SEPTAInquirer.Test\SEPTAInquirer.Test.csproj", "{938D0748-D5FC-44E8-896D-478E7472EB00}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{329FE021-7B41-495A-BF60-54081B17CFB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{329FE021-7B41-495A-BF60-54081B17CFB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{329FE021-7B41-495A-BF60-54081B17CFB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{938D0748-D5FC-44E8-896D-478E7472EB00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{938D0748-D5FC-44E8-896D-478E7472EB00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{938D0748-D5FC-44E8-896D-478E7472EB00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{938D0748-D5FC-44E8-896D-478E7472EB00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

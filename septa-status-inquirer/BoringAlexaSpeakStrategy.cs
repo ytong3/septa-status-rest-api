@@ -7,30 +7,30 @@ namespace SEPTAInquirer
 {
     public class BoringAlexaSpeakStrategy : IAlexaSpeakStrategy
     {
-        public string SayWhenLateForTheNextTrain(IEnumerable<TrainInfo> orderedTrainsToArrive)
+        public string SayWhenLateForTheNextTrain(IEnumerable<TrainInfo> orderedTrainsToArrive, DateTime now)
         {
-            var result = SayNextTrainInfo(orderedTrainsToArrive.First());
+            var result = SayNextTrainInfo(orderedTrainsToArrive.First(), now);
 
             var secondNextTrain = orderedTrainsToArrive.ElementAt(1);
             result += "You are not goint to make it. Consider taking the next one. " +
-                      SayNextTrainInfo(secondNextTrain);
+                      SayNextTrainInfo(secondNextTrain, now);
 
             return result;
         }
 
-        public string SayWhenNotLateForTheNextTrain(IEnumerable<TrainInfo> orderedTrainsToArrive)
+        public string SayWhenNotLateForTheNextTrain(IEnumerable<TrainInfo> orderedTrainsToArrive, DateTime now)
         {
-            var result = SayNextTrainInfo(orderedTrainsToArrive.First());
+            var result = SayNextTrainInfo(orderedTrainsToArrive.First(), now);
 
-            result += "You can make it if you leave now.";
+            result += " You can make it if you leave now.";
 
             return result;
         }
 
-        private string SayNextTrainInfo(TrainInfo nextTrain)
+        private string SayNextTrainInfo(TrainInfo nextTrain, DateTime now)
         {
             return
-                $"{nextTrain.TrainName} Train is {nextTrain.TrainStatu.ToString()} and is leaving in {nextTrain.NowDeparureTime.Subtract(DateTime.Now).TotalMinutes} minutes.";
+                $"{nextTrain.TrainName} Train is {nextTrain.TrainStatu.ToString().ToLower()} and is leaving in {nextTrain.NowDeparureTime.Subtract(now).TotalMinutes} minutes.";
         }
     }
 }

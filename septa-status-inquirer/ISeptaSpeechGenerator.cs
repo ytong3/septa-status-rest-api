@@ -8,7 +8,7 @@ namespace SEPTAInquirer
 {
     public interface ISeptaSpeechGenerator
     {
-        string GenerateSpeechForAlexa(IEnumerable<TrainInfo> trainsToArrive);
+        string GenerateSpeechForAlexa(IEnumerable<TrainInfo> trainsToArrive, DateTime now);
     }
 
     // TODO: abstract base class or strategy pattern? composition over inheritance.
@@ -17,12 +17,12 @@ namespace SEPTAInquirer
         private ISeptapiClient _apiClient;
         private IAlexaSpeakStrategy _speakStrategy;
 
-        protected SpetaSpeechGenerator(IAlexaSpeakStrategy speakStrategy)
+        public SpetaSpeechGenerator(IAlexaSpeakStrategy speakStrategy)
         {
             _speakStrategy = speakStrategy;
         }
 
-        public string GenerateSpeechForAlexa(IEnumerable<TrainInfo> trainsToArrive)
+        public string GenerateSpeechForAlexa(IEnumerable<TrainInfo> trainsToArrive, DateTime now)
         {
             // order the IEnumerable
             var orderedListOfArrivingTrains = trainsToArrive.OrderBy(train => train.NowDeparureTime);
@@ -30,15 +30,15 @@ namespace SEPTAInquirer
             // TODO: usage of the IEnumerable?
             var theVeryNextTrain = orderedListOfArrivingTrains.First();
 
-            var minutesToGo = theVeryNextTrain.NowDeparureTime.Subtract(DateTime.Now).TotalMinutes;
+            var minutesToGo = theVeryNextTrain.NowDeparureTime.Subtract(now).TotalMinutes;
 
             if (minutesToGo < 7)
             {
-                return _speakStrategy.SayWhenLateForTheNextTrain(orderedListOfArrivingTrains);
+                return _speakStrategy.SayWhenLateForTheNextTrain(orderedListOfArrivingTrains, now);
             }
             else
             {
-                return _speakStrategy.SayWhenNotLateForTheNextTrain(orderedListOfArrivingTrains);
+                return _speakStrategy.SayWhenNotLateForTheNextTrain(orderedListOfArrivingTrains, now);
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using Alexa.NET;
+﻿using System;
+using Alexa.NET;
 using Alexa.NET.Request;
 using Alexa.NET.Request.Type;
 using Alexa.NET.Response;
@@ -108,10 +109,7 @@ namespace SEPTAInquirer.Controllers
                 nextToArriveList.Add(temp);
             }
 
-            return _speechGenerator.GenerateSpeechForAlexa(nextToArriveList);
+            return _speechGenerator.GenerateSpeechForAlexa(nextToArriveList, DateTime.Now);
         }
-
-
-
     }
 }
