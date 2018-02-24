@@ -5,13 +5,14 @@ using Xunit;
 
 namespace SEPTAInquirer.Test
 {
+    //TODO: why choose xunit over ms test
     public class BoringSpeechTester
     {
         [Fact]
         public void WhenIsLateForTrain_ShouldGenerateExpectedSpeech()
         {
-        //Given
-                    SEPTANextToArriveAPIResult apiReturnedResult = new SEPTANextToArriveAPIResult()
+            //Given
+            SEPTANextToArriveAPIResult apiReturnedResult = new SEPTANextToArriveAPIResult()
             {
                 TrainsToArriveAtHomeStation = new List<NextToArriveTrainTimeDto>()
                 {
@@ -39,12 +40,14 @@ namespace SEPTAInquirer.Test
         //When
         var speechGenerator = new SpetaSpeechGenerator(new BoringAlexaSpeakStrategy());
         //Then
-                    var speech = speechGenerator.GenerateSpeechForAlexa(arrivingTrainList, DateTime.Parse("5:13"));
+                    var speech = speechGenerator.GenerateSpeechForAlexa(arrivingTrainList, DateTime.Parse("5:13PM"));
 
             var expectedSpeech = "5:15 Train is delayed and is leaving in 5 minutes." +
-                                 " You can make it if you leave now.";
+                                 " You are not going to make it. Consider taking the next one." +
+                                 " 5:25 Train is ontime and is leaving in 12 minutes.";
 
-            Assert.True(string.Equals(expectedSpeech, speech));
+
+            Assert.Equal(expectedSpeech, speech);
         }
     }
 }

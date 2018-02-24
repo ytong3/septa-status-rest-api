@@ -12,7 +12,7 @@ namespace SEPTAInquirer
             var result = SayNextTrainInfo(orderedTrainsToArrive.First(), now);
 
             var secondNextTrain = orderedTrainsToArrive.ElementAt(1);
-            result += "You are not goint to make it. Consider taking the next one. " +
+            result += " You are not going to make it. Consider taking the next one. " +
                       SayNextTrainInfo(secondNextTrain, now);
 
             return result;
@@ -30,7 +30,7 @@ namespace SEPTAInquirer
         private string SayNextTrainInfo(TrainInfo nextTrain, DateTime now)
         {
             return
-                $"{nextTrain.TrainName} Train is {nextTrain.TrainStatu.ToString().ToLower()} and is leaving in {nextTrain.NowDeparureTime.Subtract(now).TotalMinutes} minutes.";
+                $"{nextTrain.TrainName} Train is {nextTrain.TrainStatus.ToString().ToLower()} and is leaving in {nextTrain.NowDeparureTime.Subtract(now).TotalMinutes} minutes.";
         }
     }
 }

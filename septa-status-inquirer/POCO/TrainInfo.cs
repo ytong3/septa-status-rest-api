@@ -17,7 +17,7 @@ namespace SEPTAInquirer.POCO
 
         public int LateInMinutes { get; set; } = 0;
         public DateTime NowDeparureTime { get; set; }
-        public TrainStatusEnum TrainStatu { get; set; }
+        public TrainStatusEnum TrainStatus { get; set; }
 
         //TODO: differentiate creation from initialization and usage (the clean code book)
         public TrainInfo()
@@ -32,21 +32,21 @@ namespace SEPTAInquirer.POCO
             //trainName
 
             //TODO: use something like https://github.com/Humanizr/Humanizer to make the speech more natural, like 09:04 translates to nine,o',four train
-            TrainName = apiDto.OriginalDepartureTime;
+            TrainName = Regex.Match(apiDto.OriginalDepartureTime, @"[\d:]+").Value;
             NowDeparureTime = DateTime.Parse(apiDto.OriginalDepartureTime);
 
             if (string.Equals(apiDto.OriginalDelay, "On time", StringComparison.OrdinalIgnoreCase))
             {
-                TrainStatu = TrainStatusEnum.OnTime;
+                TrainStatus = TrainStatusEnum.OnTime;
             }
             // TODO: actually not quite sure about this status
             else if (string.Equals(apiDto.OriginalDelay, "Canceled", StringComparison.OrdinalIgnoreCase))
             {
-                TrainStatu = TrainStatusEnum.Cacneled;
+                TrainStatus = TrainStatusEnum.Cacneled;
             }
             else
             {
-                TrainStatu = TrainStatusEnum.Delayed;
+                TrainStatus = TrainStatusEnum.Delayed;
                 LateInMinutes = Int32.Parse(Regex.Match(apiDto.OriginalDelay, @"\d+").Value);
                 NowDeparureTime = NowDeparureTime.AddMinutes(LateInMinutes);
             }

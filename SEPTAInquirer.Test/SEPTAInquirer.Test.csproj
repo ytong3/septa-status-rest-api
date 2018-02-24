@@ -2,13 +2,21 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <RuntimeFrameworkVersion>2.0.3</RuntimeFrameworkVersion>
+    <RuntimeFrameworkVersion>2.0.5</RuntimeFrameworkVersion>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="xunit" Version="2.3.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0"/>
+    <ProjectReference Include="..\septa-status-inquirer\SEPTAInquirer.csproj" />
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
+    
   </ItemGroup>
+
+<ItemGroup>
+  <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
+  <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
+</ItemGroup>
 
 </Project>
