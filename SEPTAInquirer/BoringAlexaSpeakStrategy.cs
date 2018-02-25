@@ -29,8 +29,9 @@ namespace SEPTAInquirer
 
         private string SayNextTrainInfo(TrainInfo nextTrain, DateTime now)
         {
+            var trainingLeavingInMinutes = Math.Floor(nextTrain.NowDeparureTime.Subtract(now).TotalMinutes);
             return
-                $"{nextTrain.TrainName} Train is {nextTrain.TrainStatus.ToString().ToLower()} and is leaving in {nextTrain.NowDeparureTime.Subtract(now).TotalMinutes} minutes.";
+                $"{nextTrain.TrainName} Train is {nextTrain.TrainStatus.ToString().ToLower()} and is leaving in {trainingLeavingInMinutes} minutes.";
         }
     }
 }
