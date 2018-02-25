@@ -12,26 +12,23 @@ namespace SEPTAInquirer.Test
         public void WhenIsLateForTrain_ShouldGenerateExpectedSpeech()
         {
             //Given
-            SEPTANextToArriveAPIResult apiReturnedResult = new SEPTANextToArriveAPIResult()
+            IList<NextToArriveTrainTimeDto> apiReturnedResult = new List<NextToArriveTrainTimeDto>()
             {
-                TrainsToArriveAtHomeStation = new List<NextToArriveTrainTimeDto>()
+                new NextToArriveTrainTimeDto()
                 {
-                    new NextToArriveTrainTimeDto()
-                    {
-                        OriginalDelay = "On Time",
-                        OriginalDepartureTime = "5:25PM"
-                    },
-                    new NextToArriveTrainTimeDto()
-                    {
-                        OriginalDelay = "3 mins",
-                        OriginalDepartureTime = "5:15PM"
-                    }
+                    OriginalDelay = "On Time",
+                    OriginalDepartureTime = "5:25PM"
+                },
+                new NextToArriveTrainTimeDto()
+                {
+                    OriginalDelay = "3 mins",
+                    OriginalDepartureTime = "5:15PM"
                 }
             };
 
             var arrivingTrainList = new List<TrainInfo>();
 
-            foreach (var trainsDto in apiReturnedResult.TrainsToArriveAtHomeStation)
+            foreach (var trainsDto in apiReturnedResult)
             {
                 var tmp = new TrainInfo();
                 tmp.MapFrom(trainsDto);
