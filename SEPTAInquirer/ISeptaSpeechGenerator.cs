@@ -29,7 +29,7 @@ namespace SEPTAInquirer
             // TODO: usage of the IEnumerable?
             var theVeryNextTrain = orderedListOfArrivingTrains.First();
 
-            var minutesToGo = theVeryNextTrain.NowDeparureTime.Subtract(now).TotalMinutes;
+            var minutesToGo = Math.Floor(theVeryNextTrain.NowDeparureTime.Subtract(now).TotalMinutes);
 
             if (minutesToGo < 7)
             {

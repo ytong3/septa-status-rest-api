@@ -109,7 +109,7 @@ namespace SEPTAInquirer.Controllers
 
             var nextToArriveList = new List<TrainInfo>();
 
-            foreach (var trainInApiResult in apiResult.TrainsToArriveAtHomeStation)
+            foreach (var trainInApiResult in apiResult)
             {
                 var temp = new TrainInfo();
                 temp.MapFrom(trainInApiResult);

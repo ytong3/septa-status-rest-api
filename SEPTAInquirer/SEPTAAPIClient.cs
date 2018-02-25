@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
@@ -37,7 +38,7 @@ namespace SEPTAInquierierForAlexa
             };
         }
 
-        public async Task<SEPTANextToArriveAPIResult> GetNextToArriveFromHomeToDestinationAsync()
+        public async Task<IList<NextToArriveTrainTimeDto>> GetNextToArriveFromHomeToDestinationAsync()
         {
             var result = await _client.GetAsync(string.Format(@"NextToArrive/{0}/{1}/{2}", _homeStation, _destStation, _numberOfResults));
 
@@ -45,7 +46,7 @@ namespace SEPTAInquierierForAlexa
             //var resultObject = JsonConvert.DeserializeObject<SEPTANextToArriveAPIResult>(result.Content.ToString());
             result.EnsureSuccessStatusCode();
 
-            var resultObject = JsonConvert.DeserializeObject<SEPTANextToArriveAPIResult>(await result.Content.ReadAsStringAsync());
+            var resultObject = JsonConvert.DeserializeObject<IList<NextToArriveTrainTimeDto>>(await result.Content.ReadAsStringAsync());
 
             return resultObject;
         }
