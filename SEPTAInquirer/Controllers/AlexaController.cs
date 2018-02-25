@@ -90,7 +90,7 @@ namespace SEPTAInquirer.Controllers
             {
                 var speechToSay  = HandleAmILateIntent();
 
-                speech.Ssml = "<speak>"+speechToSay;
+                speech.Ssml = "<speak>"+speechToSay+"</speak>";
                 return ResponseBuilder.Tell(speech);
             }
 
