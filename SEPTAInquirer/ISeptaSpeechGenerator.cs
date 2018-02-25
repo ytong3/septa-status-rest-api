@@ -14,7 +14,6 @@ namespace SEPTAInquirer
     // TODO: abstract base class or strategy pattern? composition over inheritance.
     public class SpetaSpeechGenerator : ISeptaSpeechGenerator
     {
-        private ISeptapiClient _apiClient;
         private IAlexaSpeakStrategy _speakStrategy;
 
         public SpetaSpeechGenerator(IAlexaSpeakStrategy speakStrategy)

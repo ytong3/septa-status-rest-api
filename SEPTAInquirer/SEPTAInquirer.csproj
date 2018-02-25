@@ -16,8 +16,4 @@
     <PackageReference Include="Alexa.NET.Security.Middleware" Version="1.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
-  </ItemGroup>
-
 </Project>
