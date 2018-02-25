@@ -65,7 +65,7 @@ namespace SEPTAInquirer.Controllers
         // remove in code cleaning.
         [HttpGet]
         public IActionResult GetForTest(){
-            return Ok();
+            return Ok("Yes, the controller is reachable.");
         }
 
         private SkillResponse ErrorResponse()
