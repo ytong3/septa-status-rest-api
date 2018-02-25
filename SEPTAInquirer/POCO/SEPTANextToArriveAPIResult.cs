@@ -9,7 +9,7 @@ namespace SEPTAInquirer.POCO
     public class SEPTANextToArriveAPIResult
     {
         // result is not ordered
-        public IEnumerable<NextToArriveTrainTimeDto> TrainsToArriveAtHomeStation { get; set; }
+        public IList<NextToArriveTrainTimeDto> TrainsToArriveAtHomeStation { get; set; }
     };
 
 

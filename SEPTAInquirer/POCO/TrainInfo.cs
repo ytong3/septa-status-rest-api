@@ -25,6 +25,7 @@ namespace SEPTAInquirer.POCO
             
         }
 
+        //TODO: may use a customized JSON converter to make the code cleaner
         public void MapFrom(NextToArriveTrainTimeDto apiDto)
         {
             //NOTE: sample source 

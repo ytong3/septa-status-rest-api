@@ -61,6 +61,13 @@ namespace SEPTAInquirer.Controllers
             return Ok(ErrorResponse());
         }
 
+        //TODO: this handler is for making sure the controller is reachable.
+        // remove in code cleaning.
+        [HttpGet]
+        public IActionResult GetForTest(){
+            return Ok();
+        }
+
         private SkillResponse ErrorResponse()
         {
             var speech = new SsmlOutputSpeech();

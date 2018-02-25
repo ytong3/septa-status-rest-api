@@ -10,23 +10,29 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Alexa.NET.Security.Middleware;
 using SEPTAInquierierForAlexa;
+using Microsoft.AspNetCore.Http;
 
 namespace SEPTAInquirer
 {
     public class Startup
     {
+      
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
+        
         public IConfiguration Configuration { get; }
+
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
             services.AddSingleton<ISeptapiClient, SEPTAAPIClient>();
+            services.AddScoped<ISeptaSpeechGenerator, SpetaSpeechGenerator>();
+            services.AddTransient<IAlexaSpeakStrategy, BoringAlexaSpeakStrategy>();
 
             //TODO: need an AutoMapper to map a SEPTANextToArriveAPIResult to TrainInfo?
         }
@@ -39,8 +45,13 @@ namespace SEPTAInquirer
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseAlexaRequestValidation();
+            //app.UseAlexaRequestValidation();
             app.UseMvc();
+
+            app.Run(async (context)=>{
+                context.Response.StatusCode = 500;
+                await context.Response.WriteAsync("Don't look at me. POST to api/alex.");
+            });
         }
     }
 }
