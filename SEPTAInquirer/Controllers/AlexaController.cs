@@ -116,7 +116,7 @@ namespace SEPTAInquirer.Controllers
                 nextToArriveList.Add(temp);
             }
 
-            return _speechGenerator.GenerateSpeechForAlexa(nextToArriveList, DateTime.Now);
+            return _speechGenerator.GenerateSpeechForAlexa(nextToArriveList, DateTime.UtcNow);
         }
     }
 }
