@@ -14,13 +14,6 @@ namespace SEPTAInquirer
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseKestrel(options =>
-                {
-                    options.Listen(IPAddress.Loopback, 5050, listenOptions =>
-                    {
-                        listenOptions.UseHttps("localhost.pfx", "881107");
-                    });
-                })
                 .UseStartup<Startup>()
                 .Build();
     }
