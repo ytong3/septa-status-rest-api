@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/septa-status-inquirer/SEPTAInquirer.csproj"
+                "${workspaceFolder}/SEPTAInquirer/SEPTAInquirer.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

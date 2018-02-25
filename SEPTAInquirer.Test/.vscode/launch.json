@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "septa-status-inquirer/bin/Debug/netcoreapp2.0/SEPTAInquirer.dll",
+            "program": "SEPTAInquirer/bin/Debug/netcoreapp2.0/SEPTAInquirer.dll",
             "args": [],
-            "cwd": "septa-status-inquirer",
+            "cwd": "SEPTAInquirer",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart",
             "launchBrowser": {

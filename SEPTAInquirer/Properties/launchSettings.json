@@ -16,7 +16,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "septa-status-inquirer": {
+    "SEPTAInquirer": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api/values",
