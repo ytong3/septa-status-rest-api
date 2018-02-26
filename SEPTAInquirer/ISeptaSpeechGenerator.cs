@@ -27,7 +27,7 @@ namespace SEPTAInquirer
             var orderedListOfArrivingTrains = trainsToArrive.OrderBy(train => train.NowDeparureTime);
 
             // convert utcNow to EST
-            var estTimeZone = TimeZoneInfo.FindSystemTimeZoneById("EST");
+            var estTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
             var localNow = TimeZoneInfo.ConvertTimeFromUtc(utcNow, estTimeZone);
             
             var theVeryNextTrain = orderedListOfArrivingTrains.First();
