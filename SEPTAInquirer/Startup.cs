@@ -50,7 +50,7 @@ namespace SEPTAInquirer
 
             app.Run(async (context)=>{
                 context.Response.StatusCode = 500;
-                await context.Response.WriteAsync("Don't look at me. POST to api/alex.");
+                await context.Response.WriteAsync("Don't look at me. POST to api/alexa.");
             });
         }
     }
