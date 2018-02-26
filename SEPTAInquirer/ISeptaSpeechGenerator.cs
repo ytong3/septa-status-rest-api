@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using SEPTAInquirer.POCO;
 
 namespace SEPTAInquirer
@@ -25,22 +26,18 @@ namespace SEPTAInquirer
         {
             // order the IEnumerable
             var orderedListOfArrivingTrains = trainsToArrive.OrderBy(train => train.NowDeparureTime);
-
-            // convert utcNow to EST
-            var estTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
-            var localNow = TimeZoneInfo.ConvertTimeFromUtc(utcNow, estTimeZone);
             
             var theVeryNextTrain = orderedListOfArrivingTrains.First();
 
-            var minutesToGo = theVeryNextTrain.NowDeparureTime.Subtract(localNow).TotalMinutes;
+            var minutesToGo = theVeryNextTrain.NowDeparureTime.Subtract(utcNow).TotalMinutes;
 
             if (minutesToGo < 7)
             {
-                return _speakStrategy.SayWhenLateForTheNextTrain(orderedListOfArrivingTrains, localNow);
+                return _speakStrategy.SayWhenLateForTheNextTrain(orderedListOfArrivingTrains, utcNow);
             }
             else
             {
-                return _speakStrategy.SayWhenNotLateForTheNextTrain(orderedListOfArrivingTrains, localNow);
+                return _speakStrategy.SayWhenNotLateForTheNextTrain(orderedListOfArrivingTrains, utcNow);
             }
         }
     }

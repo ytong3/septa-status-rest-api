@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using Alexa.NET.Response.Directive;
 using Microsoft.AspNetCore.Builder;
@@ -10,6 +11,7 @@ namespace SEPTAInquirer.POCO
     //TODO: finish the DTO by looking according to the requirement of Alexa doc
     public class TrainInfo
     {
+        private static TimeZoneInfo _timeZone => (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)?TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time"):TimeZoneInfo.FindSystemTimeZoneById("EST"));
         /// <summary>
         /// a train is identified with its original departure time. e.g. A train leaves Paoli at 8:02, is called the eight o' two train.
         /// </summary>
@@ -34,7 +36,11 @@ namespace SEPTAInquirer.POCO
 
             //TODO: use something like https://github.com/Humanizr/Humanizer to make the speech more natural, like 09:04 translates to nine,o',four train
             TrainName = Regex.Match(apiDto.OriginalDepartureTime, @"[\d:]+").Value;
-            NowDeparureTime = DateTime.Parse(apiDto.OriginalDepartureTime);
+
+            //convert and use utc from now on.
+            // convert utcNow to EST
+            var departureTimeInEST =  DateTime.Parse(apiDto.OriginalDepartureTime);
+            NowDeparureTime = TimeZoneInfo.ConvertTimeToUtc(departureTimeInEST, _timeZone);
 
             if (string.Equals(apiDto.OriginalDelay, "On time", StringComparison.OrdinalIgnoreCase))
             {
