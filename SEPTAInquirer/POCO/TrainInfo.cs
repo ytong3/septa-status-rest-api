@@ -11,7 +11,7 @@ namespace SEPTAInquirer.POCO
     //TODO: finish the DTO by looking according to the requirement of Alexa doc
     public class TrainInfo
     {
-        private static TimeZoneInfo _timeZone => (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)?TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time"):TimeZoneInfo.FindSystemTimeZoneById("EST"));
+        private static TimeZoneInfo _ESTTimeZone => (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)?TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time"):TimeZoneInfo.FindSystemTimeZoneById("EST"));
         /// <summary>
         /// a train is identified with its original departure time. e.g. A train leaves Paoli at 8:02, is called the eight o' two train.
         /// </summary>
@@ -39,8 +39,12 @@ namespace SEPTAInquirer.POCO
 
             //convert and use utc from now on.
             // convert utcNow to EST
-            var departureTimeInEST =  DateTime.Parse(apiDto.OriginalDepartureTime);
-            NowDeparureTime = TimeZoneInfo.ConvertTimeToUtc(departureTimeInEST, _timeZone);
+            var utcNow = DateTime.UtcNow;
+            var estToday = TimeZoneInfo.ConvertTimeFromUtc(utcNow, _ESTTimeZone);
+
+            var departureTimeInEST =  DateTime.Parse($"{estToday.ToShortDateString()} {apiDto.OriginalDepartureTime}");
+            
+            NowDeparureTime = TimeZoneInfo.ConvertTimeToUtc(departureTimeInEST, _ESTTimeZone);
 
             if (string.Equals(apiDto.OriginalDelay, "On time", StringComparison.OrdinalIgnoreCase))
             {
