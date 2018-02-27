@@ -12,14 +12,14 @@ namespace SEPTAInquirer.Test
         public void WhenIsLateForTrain_ShouldGenerateExpectedSpeech()
         {
             //Given
-            IList<NextToArriveTrainTimeDto> apiReturnedResult = new List<NextToArriveTrainTimeDto>()
+            IList<NextToArriveTrainDto> apiReturnedResult = new List<NextToArriveTrainDto>()
             {
-                new NextToArriveTrainTimeDto()
+                new NextToArriveTrainDto()
                 {
                     OriginalDelay = "On Time",
                     OriginalDepartureTime = "5:25PM"
                 },
-                new NextToArriveTrainTimeDto()
+                new NextToArriveTrainDto()
                 {
                     OriginalDelay = "3 mins",
                     OriginalDepartureTime = "5:15PM"

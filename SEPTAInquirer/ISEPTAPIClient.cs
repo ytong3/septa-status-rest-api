@@ -6,6 +6,6 @@ namespace SEPTAInquirer
 {
     public interface ISeptapiClient
     {
-        Task<IList<NextToArriveTrainTimeDto>> GetNextToArriveFromHomeToDestinationAsync();
+        Task<IList<NextToArriveTrainDto>> GetNextToArriveFromHomeToDestinationAsync();
     }
 }

@@ -10,7 +10,7 @@ namespace SEPTAInquirer.POCO
     /// Hold jsons object that look like
     /// {"orig_train":"568","orig_line":"Paoli\/Thorndale","orig_departure_time":" 3:01PM","orig_arrival_time":" 3:50PM","orig_delay":"On time","isdirect":"true"}
     /// </summary>
-    public class NextToArriveTrainTimeDto
+    public class NextToArriveTrainDto
     {
         [JsonProperty("orig_departure_time")]
         public string OriginalDepartureTime { get; set; }

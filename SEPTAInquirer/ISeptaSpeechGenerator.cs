@@ -12,7 +12,6 @@ namespace SEPTAInquirer
         string GenerateSpeechForAlexa(IEnumerable<TrainInfo> trainsToArrive, DateTime utcNow);
     }
 
-    // TODO: abstract base class or strategy pattern? composition over inheritance.
     public class SpetaSpeechGenerator : ISeptaSpeechGenerator
     {
         private IAlexaSpeakStrategy _speakStrategy;
