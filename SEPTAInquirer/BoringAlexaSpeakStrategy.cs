@@ -30,8 +30,14 @@ namespace SEPTAInquirer
         private string SayNextTrainInfo(TrainInfo nextTrain, DateTime now)
         {
             var trainingLeavingInMinutes = Math.Floor(nextTrain.NowDeparureTime.Subtract(now).TotalMinutes);
+
+            var trainStatus = "";
+            if (nextTrain.TrainStatus == TrainStatusEnum.Delayed)
+                trainStatus = nextTrain.TrainStatus.ToString().ToLower() + $" by {nextTrain.LateInMinutes} minutes";
+            else
+                trainStatus = nextTrain.TrainStatus.ToString().ToLower();
             return
-                $"{nextTrain.TrainName} Train is {nextTrain.TrainStatus.ToString().ToLower()} and is leaving in {trainingLeavingInMinutes} minutes.";
+                $"{nextTrain.TrainName} Train is {trainStatus} and is leaving in {trainingLeavingInMinutes} minutes.";
         }
     }
 }
