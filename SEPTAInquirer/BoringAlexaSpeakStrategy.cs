@@ -9,7 +9,7 @@ namespace SEPTAInquirer
     {
         public string SayWhenLateForTheNextTrain(IEnumerable<TrainInfo> orderedTrainsToArrive, DateTime now)
         {
-            var result = SayNextTrainInfo(orderedTrainsToArrive.First(), now);
+            var result = SayNextTrainInfo(nextTrain: orderedTrainsToArrive.First(), now: now);
 
             var secondNextTrain = orderedTrainsToArrive.ElementAt(1);
             result += " You are not going to make it. Consider taking the next one. " +
@@ -31,9 +31,9 @@ namespace SEPTAInquirer
         {
             var trainingLeavingInMinutes = Math.Floor(nextTrain.NowDeparureTime.Subtract(now).TotalMinutes);
 
-            var trainStatus = "";
+            var trainStatus = $"nextTrain.TrainStatus.ToString().ToLower()";
             if (nextTrain.TrainStatus == TrainStatusEnum.Delayed)
-                trainStatus = nextTrain.TrainStatus.ToString().ToLower() + $" by {nextTrain.LateInMinutes} minutes";
+                trainStatus =  trainStatus + $" by {nextTrain.LateInMinutes} minutes";
             else
                 trainStatus = nextTrain.TrainStatus.ToString().ToLower();
             return

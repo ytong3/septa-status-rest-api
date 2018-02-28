@@ -37,9 +37,9 @@ namespace SEPTAInquirer.Test
         //When
         var speechGenerator = new SpetaSpeechGenerator(new BoringAlexaSpeakStrategy());
         //Then
-                    var speech = speechGenerator.GenerateSpeechForAlexa(arrivingTrainList, DateTime.Parse("5:13PM"));
+                    var speech = speechGenerator.GenerateSpeechForAlexa(arrivingTrainList, DateTime.Parse("5:13PM").ToUniversalTime());
 
-            var expectedSpeech = "5:15 Train is delayed and is leaving in 5 minutes." +
+            var expectedSpeech = "5:15 Train is delayed by 3 minutes and is leaving in 5 minutes." +
                                  " You are not going to make it. Consider taking the next one." +
                                  " 5:25 Train is ontime and is leaving in 12 minutes.";
 

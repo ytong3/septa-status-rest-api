@@ -38,6 +38,7 @@ namespace SEPTAInquirer.Controllers
                 return BadRequest();
             }
 
+            // TODO: may use the Command Pattern to refactor out the if statement.
             var requestType = skillRequest.GetRequestType();
             if (requestType == typeof(IntentRequest))
             {
