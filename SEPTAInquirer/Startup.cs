@@ -30,8 +30,6 @@ namespace SEPTAInquirer
             services.AddSingleton<ISeptapiClient, SEPTAAPIClient>();
             services.AddScoped<ISeptaSpeechGenerator, SpetaSpeechGenerator>();
             services.AddTransient<IAlexaSpeakStrategy, BoringAlexaSpeakStrategy>();
-
-            //TODO: need an AutoMapper to map a SEPTANextToArriveAPIResult to TrainInfo?
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

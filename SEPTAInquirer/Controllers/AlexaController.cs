@@ -43,7 +43,6 @@ namespace SEPTAInquirer.Controllers
                 return BadRequest();
             }
 
-            // TODO: may use the Command Pattern to refactor out the if statement.
             var requestType = skillRequest.GetRequestType();
             if (requestType == typeof(IntentRequest))
             {
@@ -72,8 +71,10 @@ namespace SEPTAInquirer.Controllers
 
         }
 
-        //TODO: this handler is for making sure the controller is reachable.
-        // remove in code cleaning.
+        /// <summary>
+        /// this handler is for making sure the controller is reachable.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult GetForTest(){
             return Ok("Yes, the controller is reachable.");
@@ -107,9 +108,6 @@ namespace SEPTAInquirer.Controllers
             return ErrorResponse();
         }
 
-        // TODO: where is the best place to make the IO call? Best example of this is where to put the Database call?
-        // TODO: this is a possible SRP violation? Should the Speech generator generate the speech and make API call in one class?
-        // TODO: consider refactoring this to a seperate class
         private string HandleAmILateIntent()
         {
             var apiResult = _septaClient.GetNextToArriveFromHomeToDestinationAsync().GetAwaiter().GetResult();

@@ -5,7 +5,6 @@ using Xunit;
 
 namespace SEPTAInquirer.Test
 {
-    //TODO: why choose xunit over ms test
     public class BoringSpeechTester
     {
         [Fact]

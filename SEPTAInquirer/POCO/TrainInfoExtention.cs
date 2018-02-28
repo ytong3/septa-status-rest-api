@@ -29,7 +29,6 @@ namespace SEPTAInquirer.POCO
             {
                 trainInfo.TrainStatus = TrainStatusEnum.OnTime;
             }
-            // TODO: actually not quite sure about this status
             else if (string.Equals(apiResult.OriginalDelay, "Canceled", StringComparison.OrdinalIgnoreCase))
             {
                 trainInfo.TrainStatus = TrainStatusEnum.Cacneled;

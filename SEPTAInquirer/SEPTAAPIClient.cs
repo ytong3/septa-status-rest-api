@@ -37,8 +37,6 @@ namespace SEPTAInquierierForAlexa
         {
             var result = await _client.GetAsync(string.Format(@"NextToArrive/{0}/{1}/{2}", _homeStation, _destStation, _numberOfResults));
 
-            //TODO: error handling
-            //var resultObject = JsonConvert.DeserializeObject<SEPTANextToArriveAPIResult>(result.Content.ToString());
             result.EnsureSuccessStatusCode();
 
             var resultObject = JsonConvert.DeserializeObject<IList<NextToArriveTrainDto>>(await result.Content.ReadAsStringAsync());
