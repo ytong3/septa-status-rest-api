@@ -7,24 +7,28 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using SEPTAInquirer.POCO;
 using System.Collections.Generic;
+using SEPTAInquirer.Configurations;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Cors;
 
 namespace SEPTAInquirer.Controllers
 {
     [Produces("application/json")]
     [Route("api/alexa")]
+    [EnableCors("CorsPolicy")]
     public class AlexaController : Controller
     {
-        private IConfiguration _config;
+        private AlexaSkillConfig _config;
         private readonly string _appid;
         private ISeptapiClient _septaClient;
         private ISeptaSpeechGenerator _speechGenerator;
 
-        public AlexaController(IConfiguration config,
+        public AlexaController(IOptions<AlexaSkillConfig> config,
                                ISeptapiClient septaApiClient,
                                ISeptaSpeechGenerator speechGenerator)
         {
-            _config = config;
-            _appid = _config["AlexaSkillConfig:SkillAppId"];
+            _config = config.Value;
+            _appid = _config.SkillAppId;
             _septaClient = septaApiClient;
             _speechGenerator = speechGenerator;
         }
@@ -32,6 +36,7 @@ namespace SEPTAInquirer.Controllers
         [HttpPost]
         public IActionResult HandleSkillRequest([FromBody]SkillRequest skillRequest)
         {
+            try{
             // Security check
             if (skillRequest.Session.Application.ApplicationId != _appid)
             {
@@ -60,6 +65,11 @@ namespace SEPTAInquirer.Controllers
                 return Ok(finalResponse);
             }
             return Ok(ErrorResponse());
+            }
+            catch (Exception){
+                return Ok(ErrorResponse());
+            }
+
         }
 
         //TODO: this handler is for making sure the controller is reachable.
@@ -86,7 +96,6 @@ namespace SEPTAInquirer.Controllers
                 return ErrorResponse();
             }
 
-            //TODO: what are the ways to make dispatcher comform to OCP? What if I need to add more Intents later on?
             if (intentRequest.Intent.Name.Equals("AmILateIntent"))
             {
                 var speechToSay  = HandleAmILateIntent();

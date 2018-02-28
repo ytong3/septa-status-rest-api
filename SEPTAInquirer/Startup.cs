@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SEPTAInquierierForAlexa;
 using Microsoft.AspNetCore.Http;
+using SEPTAInquirer.Configurations;
 
 namespace SEPTAInquirer
 {
@@ -23,6 +24,9 @@ namespace SEPTAInquirer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.Configure<SeptaApiConfig>(Configuration.GetSection("SeptaAPIConfig"));
+            services.Configure<AlexaSkillConfig>(options => Configuration.GetSection("AlexaSkillConfig").Bind(options));
             services.AddSingleton<ISeptapiClient, SEPTAAPIClient>();
             services.AddScoped<ISeptaSpeechGenerator, SpetaSpeechGenerator>();
             services.AddTransient<IAlexaSpeakStrategy, BoringAlexaSpeakStrategy>();
