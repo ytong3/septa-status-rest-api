@@ -31,7 +31,7 @@ namespace SEPTAInquirer
         {
             var trainingLeavingInMinutes = Math.Floor(nextTrain.NowDeparureTime.Subtract(now).TotalMinutes);
 
-            var trainStatus = $"nextTrain.TrainStatus.ToString().ToLower()";
+            var trainStatus = $"{nextTrain.TrainStatus.ToString().ToLower()}";
             if (nextTrain.TrainStatus == TrainStatusEnum.Delayed)
                 trainStatus =  trainStatus + $" by {nextTrain.LateInMinutes} minutes";
             else
