@@ -46,8 +46,10 @@ namespace SEPTAInquirer.Controllers
             var requestType = skillRequest.GetRequestType();
             if (requestType == typeof(IntentRequest))
             {
-                var response = HandleIntents(skillRequest);
-                return Ok(response);
+                var speech = new SsmlOutputSpeech();
+                speech.Ssml = "<speak>Ask me a question</speak>";
+                var finalResponse = ResponseBuilder.Tell(speech);
+                return Ok(finalResponse);
             }
             else if (requestType == typeof(LaunchRequest))
             {
