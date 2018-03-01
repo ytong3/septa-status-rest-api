@@ -51,10 +51,8 @@ namespace SEPTAInquirer.Controllers
             }
             else if (requestType == typeof(LaunchRequest))
             {
-                var speech = new SsmlOutputSpeech();
-                speech.Ssml = "<speak>Ask me a question</speak>";
-                var finalResponse = ResponseBuilder.Tell(speech);
-                return Ok(finalResponse);
+                var response = HandleIntents(skillRequest);
+                return Ok(response);
             }
             else if (requestType == typeof(AudioPlayerRequest))
             {
