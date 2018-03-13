@@ -28,8 +28,8 @@ namespace SEPTAInquirer
             services.Configure<SeptaApiConfig>(Configuration.GetSection("SeptaAPIConfig"));
             services.Configure<AlexaSkillConfig>(options => Configuration.GetSection("AlexaSkillConfig").Bind(options));
             services.AddSingleton<ISeptapiClient, SEPTAAPIClient>();
-            services.AddScoped<ISeptaSpeechGenerator, SpetaSpeechGenerator>();
-            services.AddTransient<IAlexaSpeakStrategy, BoringAlexaSpeakStrategy>();
+            services.AddSingleton<ISeptaSpeechGenerator, SpetaSpeechGenerator>();
+            services.AddSingleton<IAlexaSpeakStrategy, BoringAlexaSpeakStrategy>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
